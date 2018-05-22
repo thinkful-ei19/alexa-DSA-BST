@@ -159,9 +159,10 @@ function main() {
   BST.insert(5);
   BST.insert(7);
 
-  BST.remove(3);
+//   BST.remove(3);
   
 //   console.log(BST);
+return BST;
 }
 
 main();
@@ -169,23 +170,37 @@ main();
 
 // Height of a BST
 
-function getHeight(tree) {
-  // if root ie: single node => height is 0
-  if (!tree) {
-    return -1;
-  }
+// approach one
+// function getHeight(tree) {
+//   // if root ie: single node => height is 0
+//   if (!tree) {
+//     return -1;
+//   }
 
-  let leftHeight = getHeight(tree.left);
-  let rightHeight = getHeight(tree.right);
+//   let leftHeight = getHeight(tree.left);
+//   let rightHeight = getHeight(tree.right);
 
-  if (leftHeight > rightHeight) {
-    return leftHeight + 1;
-  } else {
-    return rightHeight + 1;
+//   if (leftHeight > rightHeight) {
+//     return leftHeight + 1;
+//   } else {
+//     return rightHeight + 1;
+//   }
+// }
+
+// console.log(getHeight(BST)); // => 4
+
+//approach 2 using Math.max
+function getHeight2(tree) {
+  if (tree === null) {
+    return 0;
+  } else if (!tree.left && !tree.right) {
+    return 1;
+  } else if (tree.left || tree.right) {
+    return Math.max(getHeight2(tree.left) + 1, getHeight2(tree.right) + 1);
   }
 }
 
-// console.log(getHeight(BST)); // => 4
+// console.log(getHeight2(BST));
 
 
 // is it BST?
@@ -214,7 +229,11 @@ function isBST(tree) {
   return isBST(tree.left) && isBST(tree.right);
 }
 
-console.log(isBST(BST)); //=> return true;
+
+
+// console.log(isBST(BST)); //=> return true;
+// to test for BT -> console.log(isBST(BST)); // => returns false
+// reverse code in insert on line 23
 
 
 
