@@ -147,30 +147,32 @@ class BinarySearchTree {
   }
 }
 
+//////////// create new BST ////////////
+
 const BST = new BinarySearchTree();
 // 3,1,4,6,9,2,5,7
 function main() {
   BST.insert(3);
   BST.insert(1);
-  BST.insert(4);
-  BST.insert(6);
-  BST.insert(9);
-  BST.insert(2);
-  BST.insert(5);
-  BST.insert(7);
+//   BST.insert(4);
+//   BST.insert(6);
+//   BST.insert(9);
+//   BST.insert(2);
+//   BST.insert(5);
+//   BST.insert(7);
 
-//   BST.remove(3);
-  
-//   console.log(BST);
-return BST;
+  //   BST.remove(3);
+  //   console.log(BST);
+  return BST;
 }
 
 main();
 
 
-// Height of a BST
+//////////// Height of a BST ////////////
 
-// approach one
+// approach one:
+
 // function getHeight(tree) {
 //   // if root ie: single node => height is 0
 //   if (!tree) {
@@ -189,7 +191,8 @@ main();
 
 // console.log(getHeight(BST)); // => 4
 
-//approach 2 using Math.max
+//approach 2 using Math.max:
+
 function getHeight2(tree) {
   if (tree === null) {
     return 0;
@@ -203,7 +206,7 @@ function getHeight2(tree) {
 // console.log(getHeight2(BST));
 
 
-// is it BST?
+//////////// is it BST? ////////////
 
 // BST ->  
 // all elements in its left subtree are less to the node (<), 
@@ -229,11 +232,36 @@ function isBST(tree) {
   return isBST(tree.left) && isBST(tree.right);
 }
 
-
-
 // console.log(isBST(BST)); //=> return true;
 // to test for BT -> console.log(isBST(BST)); // => returns false
 // reverse code in insert on line 23
 
+
+
+//////////// Third largest node ////////////
+
+// third largest is parent of second largest node
+// let max = new BinarySearchTree();
+let temp = new BinarySearchTree();
+function thirdLargestNode(tree) {
+  if (tree) {
+    thirdLargestNode(tree.left);
+    
+    temp.insert(tree.key);
+    thirdLargestNode(tree.right);
+  }
+  
+  let curr = temp;
+
+  while (curr.right) {
+    curr = curr.right;
+  }
+
+  if (curr.parent && curr.parent.parent) {
+    return curr.parent.parent.key;
+  }
+}
+
+console.log(thirdLargestNode(BST)); // => return 6
 
 
