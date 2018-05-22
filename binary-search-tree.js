@@ -161,9 +161,30 @@ function main() {
 
   BST.remove(3);
 
-  console.log(BST);
+//   console.log(BST);
 }
 
 main();
 
+// Height of a BST
+
+function getHeight(tree) {
+  // if root ie: single node => height is 0
+  if (!tree) {
+    return -1;
+  }
+
+  let leftHeight = getHeight(tree.left);
+  let rightHeight = getHeight(tree.right);
+
+  if (leftHeight > rightHeight) {
+    return leftHeight + 1;
+  } else {
+    return rightHeight + 1;
+  }
+
+
+}
+
+console.log(getHeight(BST)); // => 4
 
