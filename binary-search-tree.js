@@ -153,13 +153,13 @@ const BST = new BinarySearchTree();
 // 3,1,4,6,9,2,5,7
 function main() {
   BST.insert(3);
-  BST.insert(1);
-//   BST.insert(4);
-//   BST.insert(6);
-//   BST.insert(9);
+//   BST.insert(1);
+  BST.insert(4);
+  BST.insert(6);
+  BST.insert(9);
 //   BST.insert(2);
-//   BST.insert(5);
-//   BST.insert(7);
+  BST.insert(5);
+  BST.insert(7);
 
   //   BST.remove(3);
   //   console.log(BST);
@@ -243,6 +243,7 @@ function isBST(tree) {
 // third largest is parent of second largest node
 // let max = new BinarySearchTree();
 let temp = new BinarySearchTree();
+//O(n) -> try to make O(log(n)) BST
 function thirdLargestNode(tree) {
   if (tree) {
     thirdLargestNode(tree.left);
@@ -262,6 +263,32 @@ function thirdLargestNode(tree) {
   }
 }
 
-console.log(thirdLargestNode(BST)); // => return 6
+// console.log(thirdLargestNode(BST)); // => return 6
 
+
+//////////// Balanced BST ////////////
+
+function balencedBST(tree) {
+
+
+  let leftHeight = getHeight2(tree.left);
+//   console.log('left height:', leftHeight);
+  let rightHeight = getHeight2(tree.right);
+//   console.log('right height:', rightHeight);
+
+  let absVal = (Math.abs(leftHeight - rightHeight));
+
+//   console.log('this is the ABSVAL of left and right:', absVal);
+
+  if (absVal > 1) {
+    return false;
+  }
+  return true;
+}
+
+console.log(balencedBST(BST));
+
+// or
+// function to get height of shortest
+// max height - shortest height
 
