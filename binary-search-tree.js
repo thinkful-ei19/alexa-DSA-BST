@@ -160,11 +160,12 @@ function main() {
   BST.insert(7);
 
   BST.remove(3);
-
+  
 //   console.log(BST);
 }
 
 main();
+
 
 // Height of a BST
 
@@ -182,9 +183,38 @@ function getHeight(tree) {
   } else {
     return rightHeight + 1;
   }
-
-
 }
 
-console.log(getHeight(BST)); // => 4
+// console.log(getHeight(BST)); // => 4
+
+
+// is it BST?
+
+// BST ->  
+// all elements in its left subtree are less to the node (<), 
+// and all the elements in its right subtree are greater than the node (>).
+
+//return true if tree -> BST
+function isBST(tree) {
+  if(!tree) {
+    return true;
+  }
+
+  // if left node exists and if root key < left key
+  if (tree.left !== null && tree.key < tree.left.key) {
+    return false;
+  }
+
+  // if right node exists and if root.key > right key
+  if (tree.right !== null && tree.key > tree.right.key) {
+    return false;
+  }
+
+  // call function again with left subtree and right subtree
+  return isBST(tree.left) && isBST(tree.right);
+}
+
+console.log(isBST(BST)); //=> return true;
+
+
 
